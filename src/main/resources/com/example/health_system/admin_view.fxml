@@ -8,6 +8,6 @@
         <Label text="Admin Dashboard" layoutX="20" layoutY="20" />
         <Button text="Manage Users" layoutX="20" layoutY="60" onAction="#handleManageUsers" />
         <Button text="View Reports" layoutX="150" layoutY="60" onAction="#handleViewReports" />
-        <Button text="Log Out" layoutX="20" layoutY="100" onAction="#handleLogout" />
+        <Button fx:id="logoutButton" text="Log Out" layoutX="20" layoutY="100" onAction="#handleLogout" />
     </children>
 </AnchorPane>
