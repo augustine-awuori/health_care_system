@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.health_system.UserManagementController">
+    <Label text="User Management" style="-fx-font-size: 18px;"/>
+    <TextField fx:id="usernameField" promptText="Username"/>
+    <PasswordField fx:id="passwordField" promptText="Password"/>
+    <ComboBox fx:id="roleComboBox" promptText="Select Role"/>
+    <Button text="Register" onAction="#handleRegister"/>
+    <Button text="Login" onAction="#handleLogin"/>
+</VBox>
