@@ -20,7 +20,7 @@ public class MainController {
 
     @FXML
     private void showPatientManagement() {
-        loadModule("patient_management.fxml");
+        loadModule("patient_view.fxml");
     }
 
     @FXML
