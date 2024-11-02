@@ -20,6 +20,11 @@ public class UserManagementController {
     private ComboBox<String> roleComboBox;
 
     @FXML
+    public void initialize() {
+        roleComboBox.getItems().addAll("Administrator", "Doctor", "Patient");
+    }
+
+    @FXML
     private void handleRegister() {
         String username = usernameField.getText();
         String password = passwordField.getText();
