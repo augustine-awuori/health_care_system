@@ -52,6 +52,19 @@ public class UserDAO {
         }
     }
 
+    public boolean usernameExists(String username) {
+        try (Connection connection = DatabaseConnector.getConnection();
+            var statement = connection.prepareStatement("SELECT COUNT(*) FROM users WHERE username = ?")) {
+            statement.setString(1, username);
+            var resultSet = statement.executeQuery();
+            if (resultSet.next()) return resultSet.getInt(1) > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     public User validateUser(String username, String password) {
         String sql = "SELECT username, role FROM users WHERE username = ? AND password = ?";
 
