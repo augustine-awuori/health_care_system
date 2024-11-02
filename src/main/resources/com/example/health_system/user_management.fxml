@@ -9,5 +9,5 @@
     <PasswordField fx:id="passwordField" promptText="Password"/>
     <ComboBox fx:id="roleComboBox" promptText="Select Role"/>
     <Button text="Register" onAction="#handleRegister"/>
-    <Button text="Login" onAction="#handleLogin"/>
+    <Button fx:id="loginButton" text="Login" onAction="#handleLogin"/> <!-- Added fx:id here -->
 </VBox>

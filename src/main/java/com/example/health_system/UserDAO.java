@@ -12,6 +12,28 @@ public class UserDAO {
     private static final String USER = "root";
     private static final String PASSWORD = "rootpassword";
 
+    public static User authenticateUser(String username, String password) {
+        // Implement the logic to connect to the database and verify user credentials
+        String query = "SELECT role FROM users WHERE username = ? AND password = ?";
+
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, username);
+            statement.setString(2, password); // Remember to hash passwords in a real application
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                String role = resultSet.getString("role");
+                return new User(username, password, role);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle exceptions appropriately
+        }
+        return null; // Return null if user not found
+    }
+
     public boolean registerUser(User user) {
         String sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
 

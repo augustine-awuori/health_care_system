@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.health_system.DoctorViewController">
+    <children>
+        <Label text="Doctor Dashboard" layoutX="20" layoutY="20" />
+        <Button text="View Patients" layoutX="20" layoutY="60" onAction="#handleViewPatients" />
+        <Button text="Update Records" layoutX="150" layoutY="60" onAction="#handleUpdateRecords" />
+        <Button text="Log Out" layoutX="20" layoutY="100" onAction="#handleLogout" />
+    </children>
+</AnchorPane>

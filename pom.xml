@@ -67,10 +67,9 @@
                 <version>0.0.8</version>
                 <executions>
                     <execution>
-                        <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.example.health_system/com.example.health_system.HelloApplication</mainClass>
+                            <mainClass>com.example.health_system.MainApp</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
@@ -83,4 +82,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
