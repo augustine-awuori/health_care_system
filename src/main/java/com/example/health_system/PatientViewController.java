@@ -49,4 +49,22 @@ public class PatientViewController {
 
         // You might want to add logic here to navigate back to the login screen
     }
+
+    @FXML
+    private void handleRegisterNewPatient() {
+        // Logic to register a new patient
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Register New Patient");
+        alert.setContentText("Functionality to register a new patient will be implemented.");
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void handleViewPatients() {
+        // Logic to view patients
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("View Patients");
+        alert.setContentText("Functionality to view patients will be implemented.");
+        alert.showAndWait();
+    }
 }
