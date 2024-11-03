@@ -4,11 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -56,7 +54,19 @@ public class PatientViewController {
         alert.setContentText("You have been logged out successfully.");
         alert.showAndWait();
 
-        // You might want to add logic here to navigate back to the login screen
+        // Load the main layout
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/health_system/main_layout.fxml"));
+            Parent root = loader.load();
+
+            // Get the current stage
+            var stage = (Stage) logoutButton.getScene().getWindow();
+            stage.setScene(new Scene(root)); // Set the new scene
+            stage.show(); // Show the updated scene
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Logout Failed", "Could not load the main layout.");
+        }
     }
 
     @FXML
