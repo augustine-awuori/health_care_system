@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.health_system.NewPatientRegistrationController">
+    <Label text="New Patient Registration" style="-fx-font-size: 18px;" />
+    <TextField fx:id="usernameField" promptText="Username" />
+    <TextField fx:id="diseaseField" promptText="Disease" />
+    <Button text="Save" onAction="#handleSave" />
+</VBox>

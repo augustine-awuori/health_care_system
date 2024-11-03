@@ -79,13 +79,30 @@ public class UserDAO {
             if (rs.next()) {
                 String role = rs.getString("role");
                 return new User(username, password, role);
-            } else {
-                return null;
-            }
+            } else return null;
 
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public boolean saveNewPatient(Patient patient) {
+        var sql = "INSERT INTO patients (username, disease, role) VALUES (?, ?, ?)";
+
+        try (var conn = DatabaseConnector.getConnection();
+             var statement = conn.prepareStatement(sql)) {
+
+            statement.setString(1, patient.getUsername());
+            statement.setString(2, patient.getDisease());
+            statement.setString(3, "Patient");
+
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
