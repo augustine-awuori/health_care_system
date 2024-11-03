@@ -8,9 +8,11 @@
             prefHeight="400.0" prefWidth="600.0">
 
     <!-- Book Appointment Button -->
-    <Button text="Book Appointment" layoutX="20" layoutY="50" onAction="#handleBookAppointment" />
+    <Button fx:id="bookAppointmentButton" text="Book Appointment" layoutX="20" layoutY="220" onAction="#handleBookAppointment" />
 
     <!-- View Appointments Button -->
-    <Button text="View Appointments" layoutX="20" layoutY="100" onAction="#handleViewAppointments" />
+    <Button text="View Appointments" layoutX="150" layoutY="220" onAction="#handleViewAppointments" />
 
+    <!-- Cancel Button -->
+    <Button text="Cancel" layoutX="300" layoutY="220" onAction="#handleCancel" />
 </AnchorPane>

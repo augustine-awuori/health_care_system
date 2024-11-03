@@ -160,4 +160,30 @@ public class UserDAO {
             return false; // Return false in case of error
         }
     }
+
+    public List<User> getAllDoctors() throws SQLException {
+        List<User> doctors = new ArrayList<>();
+        String sql = "SELECT username FROM users WHERE role = 'Doctor'";
+
+        try (var conn = DatabaseConnector.getConnection();
+             var statement = conn.prepareStatement(sql);
+             ResultSet rs = statement.executeQuery()) {
+
+            while (rs.next()) {
+                String username = rs.getString("username");
+                doctors.add(new User(username, "Doctor"));
+            }
+        }
+
+        return doctors;
+    }
+
+    public boolean patientExists(String username) throws SQLException {
+        // Logic to check if the patient exists in the database
+        return false;
+    }
+
+    public void bookAppointment(Appointment appointment) throws SQLException {
+        // Logic to insert a new appointment record into the database
+    }
 }

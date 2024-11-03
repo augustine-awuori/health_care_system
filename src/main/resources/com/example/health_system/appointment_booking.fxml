@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.health_system.AppointmentBookingController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <!-- Patient Username Field -->
+    <Label text="Patient Username:" layoutX="20" layoutY="20"/>
+    <TextField fx:id="patientUsernameField" layoutX="150" layoutY="20"/>
+
+    <!-- Doctor Selection ComboBox -->
+    <Label text="Select Doctor:" layoutX="20" layoutY="70"/>
+    <ComboBox fx:id="doctorComboBox" layoutX="150" layoutY="70"/>
+
+    <!-- Appointment Date Picker -->
+    <Label text="Select Date:" layoutX="20" layoutY="120"/>
+    <DatePicker fx:id="appointmentDatePicker" layoutX="150" layoutY="120"/>
+
+    <!-- Appointment Time Field -->
+    <Label text="Select Time:" layoutX="20" layoutY="170"/>
+    <TextField fx:id="appointmentTimeField" layoutX="150" layoutY="170" promptText="HH:MM"/>
+
+    <!-- Book Appointment Button -->
+    <Button text="Book Appointment" layoutX="150" layoutY="220" onAction="#handleBookAppointment"/>
+
+    <!-- Cancel Button -->
+    <Button text="Cancel" layoutX="300" layoutY="220" onAction="#handleCancel"/>
+
+</AnchorPane>

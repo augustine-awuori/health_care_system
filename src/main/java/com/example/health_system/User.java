@@ -6,8 +6,12 @@ public class User {
     private String role;
 
     public User(String username, String password, String role) {
-        this.username = username;
+        this(username, role);
         this.password = password;
+    }
+
+    public User(String username, String role) {
+        this.username = username;
         this.role = role;
     }
 
