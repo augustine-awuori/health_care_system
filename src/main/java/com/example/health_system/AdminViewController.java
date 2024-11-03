@@ -20,7 +20,7 @@ public class AdminViewController {
     @FXML
     private Button viewReportsButton; // Button to view reports
     @FXML
-    private Button logoutButton; // Button to log out
+    private Button logoutButton;
 
     @FXML
     public void initialize() {
@@ -61,7 +61,7 @@ public class AdminViewController {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace(); // Handle exceptions appropriately
+            e.printStackTrace();
         }
     }
 }

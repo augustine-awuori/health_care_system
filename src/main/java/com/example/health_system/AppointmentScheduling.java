@@ -11,15 +11,17 @@ import java.io.IOException;
 
 public class AppointmentScheduling {
     @FXML
-    private TextField patientUsernameField; // Text field for patient username
+    private TextField patientUsernameField;
     @FXML
-    private ComboBox<String> doctorComboBox; // ComboBox for selecting the doctor
+    private ComboBox<String> doctorComboBox;
     @FXML
-    private DatePicker appointmentDatePicker; // DatePicker for selecting the appointment date
+    private DatePicker appointmentDatePicker;
     @FXML
-    private TextField appointmentTimeField; // Text field for entering the appointment time
+    private TextField appointmentTimeField;
     @FXML
     private Button bookAppointmentButton;
+    @FXML
+    private Button viewAppointmentsButton;
 
     @FXML
     public void handleCancel() {}
@@ -56,10 +58,17 @@ public class AppointmentScheduling {
 
     @FXML
     private void handleViewAppointments() {
-        // Logic to view appointments
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("View Appointments");
-        alert.setContentText("Viewing appointments functionality will be implemented.");
-        alert.showAndWait();
+        try {
+            var loader = new FXMLLoader(getClass().getResource("view_appointments.fxml"));
+            Parent root = loader.load();
+
+            var stage = (Stage) viewAppointmentsButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("View Appointments");
+            stage.show();
+        } catch (IOException e) {
+            showAlert(Alert.AlertType.ERROR, "Loading Error", "Could not load the appointment booking scene.");
+            e.printStackTrace();
+        }
     }
 }

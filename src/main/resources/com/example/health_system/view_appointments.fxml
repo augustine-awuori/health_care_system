@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.health_system.ViewAppointmentsController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <TableView fx:id="appointmentsTable" layoutX="20" layoutY="20" prefHeight="300" prefWidth="560">
+        <columns>
+            <TableColumn fx:id="patientColumn" text="Patient Username" prefWidth="200"/>
+            <TableColumn fx:id="doctorColumn" text="Doctor Username" prefWidth="200"/>
+            <TableColumn fx:id="dateColumn" text="Appointment Date" prefWidth="150"/>
+            <TableColumn fx:id="timeColumn" text="Appointment Time" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+    <Button text="Cancel Appointment" layoutX="20" layoutY="340" onAction="#handleCancelAppointment"/>
+    <Button fx:id="backButton" text="Back" layoutX="150" layoutY="340" onAction="#handleBack"/>
+
+</AnchorPane>
