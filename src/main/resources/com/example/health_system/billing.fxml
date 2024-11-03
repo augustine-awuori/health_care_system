@@ -20,4 +20,7 @@
 
     <!-- Finalize Payment Button -->
     <Button text="Pay" layoutX="20" layoutY="220" onAction="#handleProcessPayment" />
+
+    <!-- View All Invoices Button -->
+    <Button text="View All Invoices" layoutX="20" layoutY="280" onAction="#handleViewInvoices" />
 </AnchorPane>

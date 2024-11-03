@@ -1,12 +1,17 @@
 package com.example.health_system;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +31,20 @@ public class BillingController {
     @FXML
     public void initialize() {
         paymentModeComboBox.getItems().addAll("Online", "Cash");
+    }
+
+    @FXML
+    private void handleViewInvoices() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/health_system/view_invoices.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("View Invoices");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
