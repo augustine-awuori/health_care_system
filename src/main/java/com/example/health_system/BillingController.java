@@ -109,6 +109,8 @@ public class BillingController {
     }
 
     private boolean createInvoice(String username, int amount, String paymentMode) {
+        createInvoicesTableIfNotExists();
+
         String query = "INSERT INTO invoices (patient_username, amount, payment_mode) VALUES (?, ?, ?)";
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -120,6 +122,24 @@ public class BillingController {
             e.printStackTrace();
         }
         return false;
+    }
+
+    private void createInvoicesTableIfNotExists() {
+        String createTableQuery = """
+        CREATE TABLE IF NOT EXISTS invoices (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            patient_username VARCHAR(50) NOT NULL,
+            amount INT NOT NULL,
+            payment_mode VARCHAR(10) NOT NULL,
+            payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    """;
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(createTableQuery)) {
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String content) {
