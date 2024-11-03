@@ -27,6 +27,6 @@
     <Button text="Book Appointment" layoutX="150" layoutY="220" onAction="#handleBookAppointment"/>
 
     <!-- Cancel Button -->
-    <Button text="Cancel" layoutX="300" layoutY="220" onAction="#handleCancel"/>
+    <Button fx:id="cancelButton" text="Cancel" layoutX="300" layoutY="220" onAction="#handleCancel"/>
 
 </AnchorPane>

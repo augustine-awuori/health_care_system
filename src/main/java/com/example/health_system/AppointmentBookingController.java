@@ -1,11 +1,13 @@
 package com.example.health_system;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,6 +23,8 @@ public class AppointmentBookingController {
     private DatePicker appointmentDatePicker;
     @FXML
     private TextField appointmentTimeField;
+    @FXML
+    private Button cancelButton;
 
     @FXML
     public void initialize() {
@@ -116,8 +120,16 @@ public class AppointmentBookingController {
 
     @FXML
     private void handleCancel() {
-        // Logic to close or reset the booking form
-        clearFields();
+        try {
+            clearFields();
+            var loader = new FXMLLoader(getClass().getResource("/com/example/health_system/main_layout.fxml"));
+            Parent root = loader.load();
+            var stage = (Stage) cancelButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String content) {
