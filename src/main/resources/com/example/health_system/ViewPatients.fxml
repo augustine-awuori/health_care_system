@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.health_system.ViewPatientsController">
@@ -13,12 +14,13 @@
         </HBox>
 
         <!-- TableView to display patients -->
-        <TableView fx:id="patientsTable" layoutX="20" layoutY="50" prefWidth="400" prefHeight="300">
+        <TableView fx:id="patientsTable" layoutX="20" layoutY="50" prefWidth="500" prefHeight="300" onMouseClicked="#handleTableClick">
             <columns>
                 <TableColumn text="ID" fx:id="idColumn" />
                 <TableColumn text="Username" fx:id="usernameColumn" />
                 <TableColumn text="Disease" fx:id="diseaseColumn" />
                 <TableColumn text="Role" fx:id="roleColumn" />
+                <TableColumn text="Actions" fx:id="actionsColumn" /> <!-- Column for update buttons -->
             </columns>
         </TableView>
 

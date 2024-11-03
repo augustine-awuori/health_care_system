@@ -8,7 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableCell;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.sql.SQLException;
 
@@ -26,6 +29,8 @@ public class ViewPatientsController {
     private TableColumn<Patient, String> roleColumn; // Column for role
     @FXML
     private TextField searchField; // TextField for search input
+    @FXML
+    private TableColumn<Patient, Void> actionsColumn; // Column for action buttons
 
     @FXML
     public void initialize() {
@@ -36,6 +41,48 @@ public class ViewPatientsController {
         roleColumn.setCellValueFactory(cellData -> cellData.getValue().getRoleProperty());
 
         loadPatientData();
+        // Create the action column with update buttons
+        createActionsColumn();
+
+        // Load patient data into the table
+        loadPatientData();
+    }
+
+    private void createActionsColumn() {
+        actionsColumn.setCellFactory(new Callback<TableColumn<Patient, Void>, TableCell<Patient, Void>>() {
+            @Override
+            public TableCell<Patient, Void> call(TableColumn<Patient, Void> param) {
+                return new TableCell<Patient, Void>() {
+                    private final Button updateButton = new Button("Update");
+
+                    {
+                        updateButton.setOnAction(event -> {
+                            Patient selectedPatient = getTableView().getItems().get(getIndex());
+                            handleUpdate(selectedPatient); // Call update handler with selected patient
+                        });
+                    }
+
+                    @Override
+                    protected void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(updateButton);
+                        }
+                    }
+                };
+            }
+        });
+    }
+
+    private void handleUpdate(Patient patient) {
+        // Logic to show update form with patient details
+        // You may implement a dialog or new scene to show the patient's details for updating
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Update Patient");
+        alert.setContentText("Update form for patient: " + patient.getUsername() + " will be implemented here.");
+        alert.showAndWait();
     }
 
     private void loadPatientData() {
@@ -78,7 +125,7 @@ public class ViewPatientsController {
 
     @FXML
     private void handleClose() {
-        Stage stage = (Stage) patientsTable.getScene().getWindow();
+        var stage = (Stage) patientsTable.getScene().getWindow();
         stage.close();
     }
 
@@ -87,5 +134,9 @@ public class ViewPatientsController {
         alert.setTitle(title);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    public void handleTableClick(MouseEvent mouseEvent) {
+
     }
 }
