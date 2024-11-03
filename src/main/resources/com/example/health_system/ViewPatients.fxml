@@ -5,7 +5,15 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.health_system.ViewPatientsController">
     <children>
-        <TableView fx:id="patientsTable" layoutX="20" layoutY="20" prefWidth="400" prefHeight="300">
+        <!-- Search Field and Buttons -->
+        <HBox spacing="10" layoutX="20" layoutY="10">
+            <TextField fx:id="searchField" promptText="Enter username to search..." />
+            <Button text="Search" onAction="#handleSearch" />
+            <Button text="Reset" onAction="#handleReset" />
+        </HBox>
+
+        <!-- TableView to display patients -->
+        <TableView fx:id="patientsTable" layoutX="20" layoutY="50" prefWidth="400" prefHeight="300">
             <columns>
                 <TableColumn text="ID" fx:id="idColumn" />
                 <TableColumn text="Username" fx:id="usernameColumn" />
@@ -13,6 +21,8 @@
                 <TableColumn text="Role" fx:id="roleColumn" />
             </columns>
         </TableView>
-        <Button text="Close" layoutX="20" layoutY="330" onAction="#handleClose" />
+
+        <!-- Close Button -->
+        <Button text="Close" layoutX="20" layoutY="360" onAction="#handleClose" />
     </children>
 </AnchorPane>

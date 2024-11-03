@@ -125,4 +125,23 @@ public class UserDAO {
 
         return patients;
     }
+
+    public List<Patient> getPatientsByUsername(String username) throws SQLException {
+        List<Patient> patients = new ArrayList<>();
+        String query = "SELECT * FROM patients WHERE username = ?";
+
+        try (var conn = DatabaseConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                // Assuming you have appropriate constructors in Patient class
+                var patient = new Patient(rs.getString("username"), rs.getString("disease"));
+                patients.add(patient);
+            }
+        }
+        return patients;
+    }
+
 }
