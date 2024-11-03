@@ -42,7 +42,7 @@ public class ViewAppointmentsController {
     public void initialize() {
         // Set up the table columns to match the Appointment properties
         patientColumn.setCellValueFactory(new PropertyValueFactory<>("patientUsername"));
-        doctorColumn.setCellValueFactory(new PropertyValueFactory<>("doctorUsername"));
+        doctorColumn.setCellValueFactory(new PropertyValueFactory<>("doctorName")); // Corrected field name
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentDate"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentTime"));
 
@@ -51,9 +51,9 @@ public class ViewAppointmentsController {
 
     private void loadAppointments() {
         List<Appointment> appointments = new ArrayList<>();
-        try (Connection connection = DatabaseConnector.getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM appointments")) {
-            ResultSet resultSet = statement.executeQuery();
+        try (var connection = DatabaseConnector.getConnection();
+             var statement = connection.prepareStatement("SELECT * FROM appointments")) {
+            var resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 String patientUsername = resultSet.getString("patient_username");
                 String doctorUsername = resultSet.getString("doctor_username");
@@ -64,7 +64,9 @@ public class ViewAppointmentsController {
                 LocalTime appointmentTime = dateTime.toLocalTime();
 
                 // Create the Appointment object with only usernames for patient and doctor
-                appointments.add(new Appointment(patientUsername, doctorUsername, appointmentDate, appointmentTime.toString(), false));
+                appointments.add(
+                    new Appointment(patientUsername, doctorUsername, appointmentDate, appointmentTime.toString(), false)
+                );
             }
         } catch (SQLException e) {
             showAlert(Alert.AlertType.ERROR, "Database Error", "Could not load appointments.");
