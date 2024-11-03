@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.health_system.ViewPatientsController">
+    <children>
+        <TableView fx:id="patientsTable" layoutX="20" layoutY="20" prefWidth="400" prefHeight="300">
+            <columns>
+                <TableColumn text="ID" fx:id="idColumn" />
+                <TableColumn text="Username" fx:id="usernameColumn" />
+                <TableColumn text="Disease" fx:id="diseaseColumn" />
+                <TableColumn text="Role" fx:id="roleColumn" />
+            </columns>
+        </TableView>
+        <Button text="Close" layoutX="20" layoutY="330" onAction="#handleClose" />
+    </children>
+</AnchorPane>

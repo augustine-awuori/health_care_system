@@ -81,11 +81,20 @@ public class PatientViewController {
 
     @FXML
     private void handleViewPatients() {
-        // Logic to view patients
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("View Patients");
-        alert.setContentText("Functionality to view patients will be implemented.");
-        alert.showAndWait();
+        try {
+            var loader = new FXMLLoader(getClass().getResource("/com/example/health_system/ViewPatients.fxml"));
+            Parent root = loader.load();
+
+            // Set up a new stage for viewing patients
+            Stage patientsStage = new Stage();
+            patientsStage.setTitle("Patients List");
+            patientsStage.setScene(new Scene(root));
+            patientsStage.show(); // Show the stage
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Loading Failed", "Could not load the patients view.");
+        }
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String content) {

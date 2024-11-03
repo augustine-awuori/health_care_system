@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
 
@@ -104,5 +106,23 @@ public class UserDAO {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public List<Patient> getAllPatients() throws SQLException {
+        List<Patient> patients = new ArrayList<>();
+        String query = "SELECT id, username, disease, role FROM patients";
+
+        try (var connection = DatabaseConnector.getConnection();
+             var statement = connection.prepareStatement(query);
+             var resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                var username = resultSet.getString("username");
+                var disease = resultSet.getString("disease");
+                patients.add(new Patient(username, disease));
+            }
+        }
+
+        return patients;
     }
 }
