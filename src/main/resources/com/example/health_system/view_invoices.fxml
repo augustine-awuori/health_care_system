@@ -16,5 +16,5 @@
         </columns>
     </TableView>
 
-    <Button text="Back" layoutX="20" layoutY="340" onAction="#handleBack"/>
+    <Button fx:id="backButton" text="Back" layoutX="20" layoutY="340" onAction="#handleBack"/>
 </AnchorPane>
