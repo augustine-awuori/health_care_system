@@ -1,6 +1,9 @@
 package com.example.health_system;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert;
@@ -13,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class ViewPatientsController {
@@ -76,13 +80,23 @@ public class ViewPatientsController {
         });
     }
 
+    @FXML
     private void handleUpdate(Patient patient) {
-        // Logic to show update form with patient details
-        // You may implement a dialog or new scene to show the patient's details for updating
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Update Patient");
-        alert.setContentText("Update form for patient: " + patient.getUsername() + " will be implemented here.");
-        alert.showAndWait();
+        try {
+            var loader = new FXMLLoader(getClass().getResource("/com/example/health_system/UpdatePatient.fxml"));
+            Parent root = loader.load();
+
+            UpdatePatientController controller = loader.getController();
+            controller.setPatient(patient);
+
+            var updateStage = new Stage();
+            updateStage.setTitle("Update Patient - " + patient.getUsername());
+            updateStage.setScene(new Scene(root));
+            updateStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Loading Failed", "Could not load the update form.");
+        }
     }
 
     private void loadPatientData() {

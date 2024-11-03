@@ -141,7 +141,23 @@ public class UserDAO {
                 patients.add(patient);
             }
         }
+
         return patients;
     }
 
+    public boolean updatePatient(Patient patient) {
+        String sql = "UPDATE patients SET disease = ? WHERE username = ?";
+        try (Connection connection = DatabaseConnector.getConnection(); // Assuming you have a method to get the connection
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, patient.getDisease()); // Set the disease field
+            statement.setString(2, patient.getUsername()); // Set the username to find the patient
+
+            int rowsUpdated = statement.executeUpdate(); // Execute the update
+            return rowsUpdated > 0; // Return true if at least one row was updated
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Return false in case of error
+        }
+    }
 }

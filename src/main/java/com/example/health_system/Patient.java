@@ -4,8 +4,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Patient extends User {
-    private final SimpleStringProperty disease; // Disease of the patient
-    private final String patientId; // Patient ID
+    private SimpleStringProperty disease;
+    private final String patientId;
 
     public Patient(String username, String disease) {
         super(username, "", "Patient"); // Call the superclass constructor
@@ -36,5 +36,9 @@ public class Patient extends User {
     private String generatePatientId() {
         // Implement ID generation logic, for example, using UUID or a counter
         return "PAT-" + java.util.UUID.randomUUID().toString().substring(0, 8);
+    }
+
+    public void setDisease(String updatedDisease) {
+        disease = new SimpleStringProperty(updatedDisease);
     }
 }

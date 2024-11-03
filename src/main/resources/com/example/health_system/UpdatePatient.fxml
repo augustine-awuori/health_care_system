@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.health_system.UpdatePatientController">
+    <children>
+        <Label text="Update Patient Information" layoutX="20" layoutY="20" />
+        <Label text="Username:" layoutX="20" layoutY="60" />
+        <TextField fx:id="usernameField" layoutX="100" layoutY="60" editable="false" />
+        <Label text="Disease:" layoutX="20" layoutY="100" />
+        <TextField fx:id="diseaseField" layoutX="100" layoutY="100" />
+        <Button text="Update" layoutX="20" layoutY="140" onAction="#handleUpdate" />
+        <Button text="Cancel" layoutX="100" layoutY="140" onAction="#handleCancel" />
+    </children>
+</AnchorPane>
