@@ -1,12 +1,17 @@
 package com.example.health_system;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -82,7 +87,15 @@ public class ViewAppointmentsController {
 
     @FXML
     private void handleBack() {
-        // Logic to navigate back to the previous screen
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/health_system/main_layout.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String content) {
