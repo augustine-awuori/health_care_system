@@ -8,8 +8,8 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/health_system/main_layout.fxml"));
-        Scene scene = new Scene(loader.load(), 600, 400);
+        var loader = new FXMLLoader(getClass().getResource("/com/example/health_system/main_layout.fxml"));
+        var scene = new Scene(loader.load(), 600, 400);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Health Information Management System");
         primaryStage.show();
