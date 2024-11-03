@@ -46,11 +46,11 @@ public class UserManagementController {
         User user = new User(username, password, role);
         if (userDAO.registerUser(user)) {
             showAlert(Alert.AlertType.INFORMATION, "Registration Successful", "User registered successfully.");
+            handleLogin();
         } else {
             showAlert(Alert.AlertType.ERROR, "Registration Failed", "Could not register user.");
         }
     }
-
 
     @FXML
     private void handleLogin() {
